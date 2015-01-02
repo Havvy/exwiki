@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+
+    <title>ExWiki</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="https://github.com/phoenixframework/phoenix">Get Started</a></li>
+        </ul>
+        <span class="logo"></span>
+      </div>
+
+      <nav>
+        <section>
+          <h1>Special Pages</h1>
+          <ul>
+            <li><a href="/special/allusers">All Users</a></li>
+            <li><a href="/special/allpages">All Pages</a></li>
+            <%= if username = Plug.Conn.get_session(@conn, :identifiedas) do %>
+              <li><a href="/special/logout">Logout</a></li>
+            <% else %>
+              <li><a href="/special/login">Login</a></li>
+              <li><a href="/special/register">Register</a></li>
+            <% end %>
+          </ul>
+        </section>
+      </nav>
+
+
+      <%= if notice = Flash.get(@conn, :notice) do %>
+        <div class="container">
+          <div class="row">
+            <p><%= notice %></p>
+          </div>
+        </div>
+      <% end %>
+
+      <%= @inner %>
+
+      <div class="footer">
+        <p><a href="https://github.com/havvy/exwiki/">ExWiki Repo</a></p>
+        <%= if username = Plug.Conn.get_session(@conn, :identifiedas) do %>
+          <p>You are logged in as <b><%= username %></b>.</p>
+        <% end %>
+      </div>
+
+    </div> <!-- /container -->
+  </body>
+</html>

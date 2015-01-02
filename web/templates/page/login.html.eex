@@ -1,0 +1,12 @@
+<form action="login" method="post">
+    <%= if @error do %>
+        <div class="container">
+            <p><%= @error %></p>
+        </div>
+    <% end %>
+    <label>Username <input type="text" maxlength="24" minlength="2" name="username" value="<%= @username || "" %>"></label>
+    <label>Password <input type="password" name="password"></label>
+    <input type="submit" value="Login">
+</form>
+
+<p>Don't have an account, you may want to <a href="register">register</a> instead.</p>

@@ -1,0 +1,5 @@
+<ol>
+    <%= for user <- @users do %>
+        <li><a href="/user/<%= user.username %>"><%= user.username %></a></li>
+    <% end %>
+</ol>
