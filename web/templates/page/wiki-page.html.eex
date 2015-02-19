@@ -1,13 +1,14 @@
 <nav>
     <a href="./edit">Edit</a>
-    <a href="./move">Move</a>
+    <%= if @namespace != :user do %>
+        <a href="./move">Move</a>
+    <% end %>
     <%= if @namespace == :user do %>
         <a href="./ban">Ban</a>
     <% else %>
         <a href="./delete">Delete</a>
     <% end %>
-    <%= @namespace %>
     <a href="./history">History</a>
 </nav>
 <h1><%= @title %></h1>
-<section><%= @article || "No article here?" %></section>
+<section><%= @article %></section>

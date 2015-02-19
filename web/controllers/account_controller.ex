@@ -44,10 +44,11 @@ defmodule ExWiki.AccountController do
         }
 
         case User.validate(user) do
-            [] ->
+            nil ->
                 Logger.debug("User was validated.")
                 try do
                     ExWiki.Repo.insert(user)
+                    ExWiki.Page.new_user_page(username)
 
                     # Successfully inserted.
                     Logger.debug("Successfully inserted new user.")
@@ -139,7 +140,7 @@ defmodule ExWiki.AccountController do
     # Adding underscore because the `use` clause adds the non-underscore version.
     defp redirect_(conn, to: to, notice: notice) do
         conn
-        |> Flash.put(notice: notice)
+        |> Flash.put(:notice, notice)
         |> redirect(to: to)
     end
 end

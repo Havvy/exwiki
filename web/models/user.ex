@@ -5,16 +5,18 @@ defmodule ExWiki.User do
     schema "users" do
         field :username, :string
         field :email, :string
-        field :password_plain_text, :virtual
+        field :password_plain_text, :string, virtual: true
         field :password, :binary
         field :salt, :string
-        field :registration_date, :datetime, default: Ecto.DateTime.local
+        field :registration_date, Ecto.DateTime, default: Ecto.DateTime.local
     end
 
-    validate user,
-        username: present() and has_length(2..24, no_match: "must be between 2 and 24 characters long"),
-        password_plain_text: present() and has_length(min: 6, too_short: "must be at least 6 characters"),
-        password: present()
+    def changeset(user, params \\ nil) do
+        params
+        |> cast(user, ~w(username email password_plain_text password salt registration_date))
+        |> validate_length(:username, 2..24)
+        |> validate_length(:password_plain_text, min: 6)
+    end
 
     def where(username: username) do
         query = Ecto.Query.from u in __MODULE__,

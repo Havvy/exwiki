@@ -17,6 +17,14 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+# Configure Postgrex
+config :ex_wiki, ExWiki.Repo,
+  database: "exwiki",
+  username: "exwiki",
+  password: "hmagic",
+  hostname: "localhost",
+  url:      "ecto://exwiki:hmagic@localhost/exwiki"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

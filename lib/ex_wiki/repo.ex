@@ -1,12 +1,7 @@
 defmodule ExWiki.Repo do
-    use Ecto.Repo, adapter: Ecto.Adapters.Postgres
-
-    #                               user  :pass  @server   /dbname 
-    def conf, do: parse_url "ecto://exwiki:hmagic@localhost/exwiki"
-
-    def priv do
-        app_dir(:ex_wiki, "priv/repo")
-    end
+    use Ecto.Repo,
+        otp_app: :ex_wiki,
+        adapter: Ecto.Adapters.Postgres
 
     def log({:query, sql}, fun) do
         Logger.log(:debug, sql)

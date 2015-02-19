@@ -20,14 +20,14 @@ defmodule ExWiki.Mixfile do
   defp deps do
     [
       # Router, Controller, Views, Websockets, HTTP Server
-      {:phoenix, "~> 0.7.2"},
+      {:phoenix, "~> 0.9.0"},
       {:cowboy, "~> 1.0"},
 
       # Required by Ecto for using Postgres.
-      {:postgrex, ">= 0.0.0"},
+      {:postgrex, ">= 0.7.0"},
 
       # Database API
-      {:ecto, "~> 0.2.0"}
+      {:ecto, "~> 0.8.0"}
     ]
   end
 end

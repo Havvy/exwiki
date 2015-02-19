@@ -28,7 +28,9 @@ defmodule ExWiki.Router do
     ## /:page/talk
     ## /user/:user
     get "/user", AccountController, :list
-    get "/user/:page", UserPageController, :show
+    get "/user/:username/edit", UserPageController, :show_edit
+    post "/user/:username/edit", UserPageController, :edit
+    get "/user/:username", UserPageController, :show
     ## /image/:image
   end
 
