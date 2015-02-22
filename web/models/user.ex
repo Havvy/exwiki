@@ -20,7 +20,7 @@ defmodule ExWiki.User do
 
     def where(username: username) do
         query = Ecto.Query.from u in __MODULE__,
-            where: downcase(u.username) == downcase(^username)
+            where: fragment("downcase(?) == downcase(?)", u.username, ^username)
 
         ExWiki.Repo.all(query)
     end
@@ -28,9 +28,9 @@ defmodule ExWiki.User do
     def where_any(username: username, email: email) do
         query = Ecto.Query.from u in __MODULE__,
             where:
-                downcase(u.username) == downcase(^username)
+                fragment("downcase(?) == downcase(?)", u.username, ^username)
                 or
-                downcase(u.email) == downcase(^email)
+                fragment("downcase(?) == downcase(?)", u.email, ^email)
 
         ExWiki.Repo.all(query)
     end

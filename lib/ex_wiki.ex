@@ -1,15 +1,18 @@
 defmodule ExWiki do
   use Application
 
-  # See http://elixir-lang.org/docs/stable/elixir/Application.html
-  # for more information on OTP Applications
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
     children = [
-      # Define workers and child supervisors to be supervised
-      # worker(ExWiki.Worker, [arg1, arg2, arg3])
+      # Start the endpoint when the application starts
+      supervisor(ExWiki.Endpoint, []),
+
+      # Start the Repo when the application starts
       worker(ExWiki.Repo, [])
+
+      # Here you could define other workers and supervisors as children
+      # worker(ExWiki.Worker, [arg1, arg2, arg3]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

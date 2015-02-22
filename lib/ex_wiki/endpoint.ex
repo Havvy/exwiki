@@ -1,8 +1,10 @@
 defmodule ExWiki.Endpoint do
   use Phoenix.Endpoint, otp_app: :ex_wiki
 
+  # Serve at "/" the given assets from "priv/static" directory
   plug Plug.Static,
-    at: "/", from: :ex_wiki
+    at: "/", from: :ex_wiki,
+    only: ~w(css images js favicon.ico robots.txt)
 
   plug Plug.Logger
 
@@ -21,8 +23,8 @@ defmodule ExWiki.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_ex_wiki_key",
-    signing_salt: "oNm4SpNB",
-    encryption_salt: "1sOOg/zI"
+    signing_salt: "SWfC1A2b",
+    encryption_salt: "X0ThjWml"
 
   plug :router, ExWiki.Router
 end

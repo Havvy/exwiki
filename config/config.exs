@@ -8,9 +8,10 @@ use Mix.Config
 # Configures the endpoint
 config :ex_wiki, ExWiki.Endpoint,
   url: [host: "localhost"],
-  http: [port: System.get_env("PORT")],
-  secret_key_base: "EORbP2IPQjgyv/Z65UPWmTTvqlDD1zHBmJniB29cMnhQAX90AHEX7sI9VikixnZ3",
-  debug_errors: false
+  secret_key_base: "aaWJmwrCvn88ZVv2Y7MiIVeG6oblRlFhYUnQ7uAbvNY+fuuO1kmCKbq8nVjKrY1u",
+  debug_errors: false,
+  pubsub: [adapter: Phoenix.PubSub.PG2]
+
 
 # Configures Elixir's Logger
 config :logger, :console,

@@ -10,12 +10,11 @@ defmodule ExWiki.View do
 
       # Use Phoenix.HTML to import all HTML functions (forms, tags, etc)
       use Phoenix.HTML
-
-      # Common aliases
-      alias Phoenix.Controller.Flash
     end
   end
 
   # Functions defined here are available to all other views/templates
-  def with_layout(layout, template, do: contents), do: render(layout, template, inner: contents)
+  def with_layout(layout, template, do: contents) do
+    render(layout, template, inner: contents)
+  end
 end
